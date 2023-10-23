@@ -8,6 +8,7 @@ import { Standings } from '../interfaces/standings.interface';
   providedIn: 'root'
 })
 export class FootballService {
+  public countries_json_url: string = 'assets/countries.json';
   private baseUrl = 'https://v3.football.api-sports.io/';
   private apiKey = '920753df6ed093838e527fe46e6be439';
 
@@ -16,19 +17,11 @@ export class FootballService {
     'x-rapidapi-key': '920753df6ed093838e527fe46e6be439'
   }
 
-
-  private countries_json = './assets/countries.json';
-
   constructor(private _http: HttpClient) {
-    
   }
 
-  // TODO: Check countries json url
   getCountries(): Observable<Countries[]> {
-    const headers = new HttpHeaders()
-    .set('content-type', 'application/json')
-    .set('Access-Control-Allow-Origin', '*');
-    return this._http.get<Countries[]>(this.countries_json,  { 'headers': headers });
+    return this._http.get<Countries[]>(this.countries_json_url);
   }
 
   getStandings(league: number): Observable<Standings> {
@@ -36,7 +29,8 @@ export class FootballService {
       league: league,
       season: new Date().getFullYear()
     };
-    return this._http.get<Standings>(this.baseUrl + '/standings', { params, headers: this.headers })
+    return this._http.get<Standings>(this.baseUrl + '/standings', { params, headers: this.headers });
   }
+
 
 }

@@ -23,7 +23,7 @@ export class CountryComponent implements OnInit, OnDestroy {
       if (params && params['id']) {
         this.getStandings(params['id']);
       } else {
-        this.router.navigate(['error-page']);
+        this.getStandings(39);
       }
     });
   }
