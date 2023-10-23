@@ -1,4 +1,4 @@
-export interface Standings {
+export interface StandingsModel {
   "get": string;
   "parameters": {
     "league": string;

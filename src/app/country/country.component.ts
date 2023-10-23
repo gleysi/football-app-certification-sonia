@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FootballService } from '../services/football.service';
 import { Observable, Subscription } from 'rxjs';
-import { Standings, CountryStandings } from '../interfaces/standings.interface';
+import { StandingsModel, CountryStandings } from '../interfaces/standings.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CountryComponent implements OnInit, OnDestroy {
   public subscription: Subscription | any;
-  public results: Standings | any;
+  public results: StandingsModel | any;
   public countryStandings: CountryStandings | any;
 
   constructor(
@@ -36,13 +36,16 @@ export class CountryComponent implements OnInit, OnDestroy {
   }
 
   getStandings(league: number) {
-    this.subscription = this.footballService.getStandings(league).subscribe((standings) => {
-      this.results = standings;
-      if (this.results && this.results.response[0] && this.results.response[0].league && this.results.response[0].league.standings[0]) {
-        this.countryStandings = this.results.response[0].league.standings[0];
-      } else {
-        this.router.navigate(['error-page']);
-      }
-    }, (error) => this.router.navigate(['error-page']));
+    this.subscription = this.footballService.getStandings(league).subscribe({
+      next: (standings: StandingsModel) => {
+        this.results = standings;
+        if (this.results && this.results.response[0] && this.results.response[0].league && this.results.response[0].league.standings[0]) {
+          this.countryStandings = this.results.response[0].league.standings[0];
+        } else {
+          this.router.navigate(['error-page']);
+        }
+      },
+      error: () => this.router.navigate(['error-page'])
+    })
   }
 }
