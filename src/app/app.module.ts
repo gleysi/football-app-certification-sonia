@@ -8,13 +8,15 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { CountryComponent } from './country/country.component';
 import { FootballService } from './services/football.service';
 import { HttpClientModule } from '@angular/common/http';
+import { GameResultsComponent } from './game-results/game-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ErrorPageComponent,
-    CountryComponent
+    CountryComponent,
+    GameResultsComponent
   ],
   imports: [
     BrowserModule,
