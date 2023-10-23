@@ -6,6 +6,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { CountryComponent } from './country/country.component';
+import { FootballService } from './services/football.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { CountryComponent } from './country/country.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [FootballService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
