@@ -21,66 +21,52 @@ export interface StandingsResponse {
     "logo": string,
     "flag": string,
     "season": number,
-    "standings": [
-      [
-        {
-          "rank": number,
-          "team": {
-            "id": number,
-            "name": string,
-            "logo": string
-          },
-          "points": number,
-          "goalsDiff": number,
-          "group": string,
-          "form": string,
-          "status": string,
-          "description": string,
-          "all": {
-            "played": number,
-            "win": number,
-            "draw": number,
-            "lose": number,
-            "goals": {
-              "for": number,
-              "against": number
-            }
-          },
-          "home": {
-            "played": number,
-            "win": number,
-            "draw": number,
-            "lose": number,
-            "goals": {
-              "for": number,
-              "against": number
-            }
-          },
-          "away": {
-            "played": number,
-            "win": number,
-            "draw": number,
-            "lose": number,
-            "goals": {
-              "for": number,
-              "against": number
-            }
-          },
-          "update": string
-        }
-      ]
-    ]
+    "standings": CountryStandings[]
   }
 }
 
-export interface StandingsDisplay {
-  "team": [{ "name": string }]
-  "goalsDiff": number,
+export interface CountryStandings {
+  "rank": number,
+  "team": {
+    "id": number,
+    "name": string,
+    "logo": string
+  },
   "points": number,
-  "all": [{
+  "goalsDiff": number,
+  "group": string,
+  "form": string,
+  "status": string,
+  "description": string,
+  "all": {
     "played": number,
     "win": number,
+    "draw": number,
     "lose": number,
-    "draw": number
-  }]
+    "goals": {
+      "for": number,
+      "against": number
+    }
+  },
+  "home": {
+    "played": number,
+    "win": number,
+    "draw": number,
+    "lose": number,
+    "goals": {
+      "for": number,
+      "against": number
+    }
+  },
+  "away": {
+    "played": number,
+    "win": number,
+    "draw": number,
+    "lose": number,
+    "goals": {
+      "for": number,
+      "against": number
+    }
+  },
+  "update": string
 }
