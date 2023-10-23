@@ -5,6 +5,7 @@ import { CountryComponent } from './country/country.component';
 
 const routes: Routes = [
   { path: '', component: CountryComponent },
+  { path: 'error-page', component: ErrorPageComponent },
   { path: 'country/:id', component: CountryComponent },
   { path: '**', component: ErrorPageComponent },
 ];

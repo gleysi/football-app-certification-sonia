@@ -31,10 +31,10 @@ export class FootballService {
     return this._http.get<Countries[]>(this.countries_json,  { 'headers': headers });
   }
 
-  getStandings(): Observable<Standings> {
+  getStandings(league: number): Observable<Standings> {
     const params = {
-      league: '39',
-      season: '2023'
+      league: league,
+      season: new Date().getFullYear()
     };
     return this._http.get<Standings>(this.baseUrl + '/standings', { params, headers: this.headers })
   }
