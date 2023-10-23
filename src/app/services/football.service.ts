@@ -31,7 +31,7 @@ export class FootballService {
     return this._http.get<Countries[]>(this.countries_json,  { 'headers': headers });
   }
 
-  getStandings(): Observable<any> {
+  getStandings(): Observable<Standings> {
     const params = {
       league: '39',
       season: '2023'

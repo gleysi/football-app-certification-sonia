@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FootballService } from '../services/football.service';
 import { Observable, Subscription } from 'rxjs';
-import { Standings } from '../interfaces/standings.interface';
+import { Standings, StandingsDisplay } from '../interfaces/standings.interface';
 
 @Component({
   selector: 'app-country',
@@ -12,6 +12,7 @@ export class CountryComponent implements OnInit, OnDestroy {
   //public standingsResponse: Observable<Standings>;
   public subscription: Subscription;
   public standings: any;
+  // public results: Standings[] | undefined;
   //public league: any;
 
   constructor(private footballService: FootballService) {
@@ -23,6 +24,9 @@ export class CountryComponent implements OnInit, OnDestroy {
       } else {
         this.standings = [];
       }
+      //this.results = standings;
+      //this.standings = this.results[0].response[0].league.standings;
+      // this.standings = standings.response[0].league.standings[0];
       console.log(this.standings);
     });
   }

@@ -10,7 +10,7 @@ export interface Standings {
     "current": number,
     "total": number
   },
-  "response": StandingsResponse
+  "response": StandingsResponse[]
 }
 
 export interface StandingsResponse {
@@ -71,4 +71,16 @@ export interface StandingsResponse {
       ]
     ]
   }
+}
+
+export interface StandingsDisplay {
+  "team": [{ "name": string }]
+  "goalsDiff": number,
+  "points": number,
+  "all": [{
+    "played": number,
+    "win": number,
+    "lose": number,
+    "draw": number
+  }]
 }
