@@ -9,11 +9,12 @@ import { Subscription } from 'rxjs';
 })
 export class GameResultsComponent {
   public subscription: Subscription | any;
+  teamId: number | undefined;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.subscription = this.route.params.subscribe((params) => {
       if (params && params['id']) {
-        console.log(params['id']);
+        this.teamId = params['id'];
       } else {
         this.router.navigate(['error-page']);
       }
