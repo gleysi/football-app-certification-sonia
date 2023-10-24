@@ -1,6 +1,6 @@
 import { League } from "./league.interface";
 
-export interface FixturesResponseData {
+export interface FixturesModel {
 	errors: [],
 	get: string,
 	paging: {

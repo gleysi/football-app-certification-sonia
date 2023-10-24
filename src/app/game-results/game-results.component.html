@@ -1,18 +1,5 @@
 <div class="table-responsive table-striped">
 	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>
-			</tr>
-		</thead>
 		<tbody>
 			<tr *ngFor="let result of results">
 				<td><img [src]="result.teams!.home.logo" [alt]="result!.teams!.home!.name + ' logo'" width="20" height="20"/></td>

@@ -28,9 +28,13 @@ export class GameResultsComponent {
     });
   }
 
-  getResults(teamId: number) {
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  getResults(teamId: number): void {
     this.subscription = this.footballService.getResults(teamId, 10).subscribe({
-      next: (res: any) => {
+      next: (res: FixturesResponse[]) => {
         this.results = res;
       },
       error: () => this.router.navigate(['error-page'])

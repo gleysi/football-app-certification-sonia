@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Countries } from '../interfaces/countries.interface';
 import { Observable, map } from 'rxjs';
 import { StandingsModel } from '../interfaces/standings.interface';
-import { FixturesResponse, FixturesResponseData } from '../interfaces/fixture.interface';
+import { FixturesResponse, FixturesModel } from '../interfaces/fixture.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,7 @@ export class FootballService {
       season: this.currentSeason
     }
     return this._http.get<any>(this.baseUrl + 'fixtures', { params, headers: this.headers }).pipe(
-      map((data: FixturesResponseData) => {
+      map((data: FixturesModel) => {
         return data && data.response.length ? data.response as FixturesResponse[]: [];
       })
     );

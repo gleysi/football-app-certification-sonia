@@ -35,7 +35,7 @@ export class CountryComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  getStandings(league: number) {
+  getStandings(league: number): void {
     this.subscription = this.footballService.getStandings(league).subscribe({
       next: (standings: StandingsModel) => {
         this.results = standings;
