@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FootballService } from '../services/football.service';
 import { FixturesResponse } from '../interfaces/fixture.interface';
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-game-results',
@@ -17,7 +18,8 @@ export class GameResultsComponent {
   constructor(
     private footballService: FootballService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private location: Location) {
     this.subscription = this.route.params.subscribe((params) => {
       if (params && params['id']) {
         this.teamId = params['id'];
@@ -39,6 +41,10 @@ export class GameResultsComponent {
       },
       error: () => this.router.navigate(['error-page'])
     })
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

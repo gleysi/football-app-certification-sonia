@@ -9,32 +9,18 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
-  public countries: Countries[] | undefined;
-  public default: number | undefined;
-  public selected: number | undefined;
+export class NavbarComponent {
+  public countries: Countries[] = [];
   public subscription: Subscription | any;
 
-  constructor(private footballService: FootballService,
-    private route: ActivatedRoute
-    ) {
-    
+  constructor(private footballService: FootballService) {
     this.footballService.getCountries().subscribe((data: Countries[]) => {
       this.countries = data;
-      this.default = this.countries[0].id;
-      console.log(this.default);
-
-      this.subscription = this.route.params.subscribe((params) => {
-        if (params && params['id']) {
-          this.selected = params['id'];
-          console.log(this.selected);
-        }
-      });
-
     });
   }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let country of countryStandings; let i = index" [routerLink]="'/game-results/'+ country!.team!.id">
+      <tr *ngFor="let country of countryStandings; let i = index" [routerLink]="'/game-results/'+ country!.team!.id" class="hover-row">
         <th scope="row">{{ i }}</th>
         <th><img [src]="country!.team!.logo" [alt]="country!.team!.name + ' logo'" width="20" height="20"/></th>
         <td>{{country!.team!.name}}</td>

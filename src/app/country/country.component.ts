@@ -3,6 +3,7 @@ import { FootballService } from '../services/football.service';
 import { Observable, Subscription } from 'rxjs';
 import { StandingsModel, CountryStandings } from '../interfaces/standings.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Countries } from '../interfaces/countries.interface';
 
 @Component({
   selector: 'app-country',
@@ -23,7 +24,7 @@ export class CountryComponent implements OnInit, OnDestroy {
       if (params && params['id']) {
         this.getStandings(params['id']);
       } else {
-        this.getStandings(39);
+        this.navigateDefault();
       }
     });
   }
@@ -33,6 +34,12 @@ export class CountryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  navigateDefault(): void {
+    this.footballService.getCountries().subscribe((country: Countries[]) => {
+      this.router.navigate(['/country/' + country[0].id]);
+    });
   }
 
   getStandings(league: number): void {
