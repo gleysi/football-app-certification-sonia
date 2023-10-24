@@ -13,13 +13,17 @@ export class NavbarComponent {
   public subscription: Subscription | any;
 
   constructor(private footballService: FootballService) {
-    this.footballService.getCountries().subscribe((data: Countries[]) => {
+    this.subscription = this.footballService.getCountries().subscribe((data: Countries[]) => {
       this.countries = data;
     });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  builCountryId(countryName: string): string {
+    return `${countryName.toLocaleLowerCase()}Select`;
   }
 
 }

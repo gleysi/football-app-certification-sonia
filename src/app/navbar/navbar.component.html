@@ -1,8 +1,8 @@
 <div class="navbar row justify-content-center">
   <nav class="nav nav-pills nav-fill" *ngFor="let country of countries">
-    <a class="nav-item nav-link" [id]="country?.name + 'Select'" routerLink="/country/{{country.id}}" routerLinkActive="active"
+    <a class="nav-item nav-link" [id]="builCountryId(country!.name)" routerLink="/country/{{country.id}}" routerLinkActive="active"
       ariaCurrentWhenActive="page">
-      {{country?.name}}
+      {{country!.name}}
     </a>
   </nav>
 </div>
