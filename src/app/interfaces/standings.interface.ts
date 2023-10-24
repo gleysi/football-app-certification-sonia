@@ -10,19 +10,17 @@ export interface StandingsModel {
     current: number,
     total: number
   },
-  response: StandingsResponse[]
-}
-
-export interface StandingsResponse {
-  league: {
-    id: number,
-    name: string,
-    country: string,
-    logo: string,
-    flag: string,
-    season: number,
-    standings: CountryStandings[]
-  }
+  response: [{
+    league: {
+      id: number,
+      name: string,
+      country: string,
+      logo: string,
+      flag: string,
+      season: number,
+      standings: CountryStandings[]
+    }
+  }]
 }
 
 export interface CountryStandings {

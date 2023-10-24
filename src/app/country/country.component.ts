@@ -12,7 +12,6 @@ import { Countries } from '../interfaces/countries.interface';
 })
 export class CountryComponent implements OnInit, OnDestroy {
   public subscription: Subscription | any;
-  public results: StandingsModel | any;
   public countryStandings: CountryStandings | any;
 
   constructor(
@@ -44,13 +43,8 @@ export class CountryComponent implements OnInit, OnDestroy {
 
   getStandings(league: number): void {
     this.subscription = this.footballService.getStandings(league).subscribe({
-      next: (standings: StandingsModel) => {
-        this.results = standings;
-        if (this.results && this.results.response[0] && this.results.response[0].league && this.results.response[0].league.standings[0]) {
-          this.countryStandings = this.results.response[0].league.standings[0];
-        } else {
-          this.router.navigate(['error-page']);
-        }
+      next: (standings: CountryStandings) => {
+        this.countryStandings = standings;
       },
       error: () => this.router.navigate(['error-page'])
     })

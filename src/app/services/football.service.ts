@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Countries } from '../interfaces/countries.interface';
 import { Observable, map, of } from 'rxjs';
-import { StandingsModel } from '../interfaces/standings.interface';
+import { StandingsModel, CountryStandings } from '../interfaces/standings.interface';
 import { FixturesResponse, FixturesModel } from '../interfaces/fixture.interface';
 
 @Injectable({
@@ -27,12 +27,16 @@ export class FootballService {
     return this._http.get<Countries[]>(this.countries_json_url);
   }
 
-  getStandings(league: number): Observable<StandingsModel> {
+  getStandings(league: number): Observable<CountryStandings> {
     const params = {
       league: league,
       season: this.currentSeason
     };
-    return this._http.get<StandingsModel>(this.baseUrl + '/standings', { params, headers: this.headers });
+    return this._http.get<StandingsModel>(this.baseUrl + '/standings', { params, headers: this.headers }).pipe(
+      map((data: StandingsModel) => {
+        return data.response[0].league.standings[0] as CountryStandings;
+      })
+    );
   }
 
   getResults(teamId: number, last:number): Observable<FixturesResponse[]> {
