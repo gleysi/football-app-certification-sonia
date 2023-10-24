@@ -38,7 +38,6 @@ export class GameResultsComponent {
   getResults(teamId: number): void {
     this.subscription = this.footballService.getResults(teamId, 10).subscribe({
       next: (res: FixturesResponse[]) => {
-        console.log(res.length);
         if (res.length) {
           this.results = res;
           this.noResults = false;
