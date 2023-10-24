@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { FootballService } from '../services/football.service';
+import { FixturesResponse } from '../interfaces/fixture.interface';
 
 @Component({
   selector: 'app-game-results',
@@ -9,16 +11,30 @@ import { Subscription } from 'rxjs';
 })
 export class GameResultsComponent {
   public subscription: Subscription | any;
-  teamId: number | undefined;
+  teamId!: number;
+  results: FixturesResponse[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private footballService: FootballService,
+    private route: ActivatedRoute,
+    private router: Router) {
     this.subscription = this.route.params.subscribe((params) => {
       if (params && params['id']) {
         this.teamId = params['id'];
+        this.getResults(this.teamId);
       } else {
         this.router.navigate(['error-page']);
       }
     });
+  }
+
+  getResults(teamId: number) {
+    this.subscription = this.footballService.getResults(teamId, 10).subscribe({
+      next: (res: any) => {
+        this.results = res;
+      },
+      error: () => this.router.navigate(['error-page'])
+    })
   }
 
 }
