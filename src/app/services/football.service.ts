@@ -59,7 +59,7 @@ export class FootballService {
     return this._http.get<FixturesModel>(this.baseUrl + 'fixtures', { params, headers: this.headers }).pipe(
       map((data: FixturesModel) => {
         this.setCache(cacheKey, data.response as FixturesResponse[], this.currentDate.toString());
-        return data && data.response.length ? data.response as FixturesResponse[]: [];
+        return data && data.response.length ? data.response as FixturesResponse[] : [];
       })
     );
   }

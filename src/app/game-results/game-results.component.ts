@@ -14,6 +14,7 @@ export class GameResultsComponent {
   public subscription: Subscription | any;
   teamId!: number;
   results: FixturesResponse[] = [];
+  noResults: boolean = false;
 
   constructor(
     private footballService: FootballService,
@@ -37,7 +38,14 @@ export class GameResultsComponent {
   getResults(teamId: number): void {
     this.subscription = this.footballService.getResults(teamId, 10).subscribe({
       next: (res: FixturesResponse[]) => {
-        this.results = res;
+        console.log(res.length);
+        if (res.length) {
+          this.results = res;
+          this.noResults = false;
+        } else {
+          this.noResults = true;
+          console.log('no results');
+        }
       },
       error: () => this.router.navigate(['error-page'])
     })

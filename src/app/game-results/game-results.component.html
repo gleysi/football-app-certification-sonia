@@ -13,6 +13,9 @@
 		</tbody>
 	</table>
 </div>
+<div *ngIf="noResults">
+	<p class="bg-warning">There are no results for this</p>
+</div>
 <div>
   <button type="button" class="btn btn-primary" (click)="goBack()">Back</button><br>
 </div>
