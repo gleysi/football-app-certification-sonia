@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Countries } from '../interfaces/countries.interface';
 import { FootballService } from '../services/football.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',

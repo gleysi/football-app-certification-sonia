@@ -40,7 +40,7 @@ export class FootballService {
       last,
       season: this.currentSeason
     }
-    return this._http.get<any>(this.baseUrl + 'fixtures', { params, headers: this.headers }).pipe(
+    return this._http.get<FixturesModel>(this.baseUrl + 'fixtures', { params, headers: this.headers }).pipe(
       map((data: FixturesModel) => {
         return data && data.response.length ? data.response as FixturesResponse[]: [];
       })
